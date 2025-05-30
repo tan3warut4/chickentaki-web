@@ -14,7 +14,7 @@ export default function Home() {
   if (error) return <p>Error fetching menus: {error.message}</p>;
 
   return (
-    <div className="mx-auto max-w-xl min-h-screen bg-white flex justify-center pt-14">
+    <div className="mx-auto max-w-xl min-h-screen bg-white flex justify-center">
       <Tabs defaultValue="menu" className="w-[400px]">
         <TabsList className="grid w-full grid-cols-2">
           <TabsTrigger value="menu">
