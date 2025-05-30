@@ -1,6 +1,6 @@
 "use client";
 import { useQuery } from "@tanstack/react-query";
-import axiosClient from "../libs/axiosClient"
+// import axiosClient from "../libs/axiosClient"
 export type Menu = {
     id: string;
     name: string;
@@ -14,9 +14,9 @@ export type Menu = {
 };
 
 const fetchMenu = async (): Promise<Menu[]> => {
-    const { data } = await axiosClient.get('v1/menus');
-    console.log("Fetching data....");
-    console.log(data)
+    // const { data } = await axiosClient.get('v1/menus');
+    // console.log("Fetching data....");
+    // console.log(data)
     const mockData = [
         {
             "id": "eacb61ed-b5b6-4c00-91f0-e14555156e13",
