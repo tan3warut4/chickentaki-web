@@ -6,8 +6,21 @@ import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group"
 import { useRouter } from 'next/navigation'
 import { useSearchParams } from 'next/navigation'
 
+export type Menu = {
+  id: string;
+  name: string,
+  imageUrl: string,
+  price: number,
+  category: string,
+  description: string,
+}
+type MenuListProps = {
+  menus: Menu[];
+};
 
-function MenuList({ data }: any) {
+
+const MenuList: React.FC<MenuListProps> = ({ menus }) => {
+
   const router = useRouter();
   const searchParams = useSearchParams();
   const [category, setCategory] = useState(searchParams?.get("category") || "all");
@@ -19,11 +32,11 @@ function MenuList({ data }: any) {
     }
   }, [searchParams, category]);
 
-  const filteredData = useMemo(() => {
-    if (category === "all") return data;
-    let result = data.filter((menu: any) => menu.category === category)
+  const filteredMenus = useMemo(() => {
+    if (category === "all") return menus;
+    const result = menus.filter((menu: Menu) => menu.category === category)
     return result
-  }, [category, data]);
+  }, [category, menus]);
 
 
   const handleToggleChange = (value: string | undefined) => {
@@ -71,7 +84,7 @@ function MenuList({ data }: any) {
       </ToggleGroup>
 
       <div className='flex flex-col gap-4'>
-        {filteredData?.map((menu: any) => <Menu key={menu.id} imageUrl={menu.imageUrl} name={menu.name} description={menu.description} price={menu.price} />)}
+        {filteredMenus?.map((menu: Menu) => <Menu key={menu.id} imageUrl={menu.imageUrl} name={menu.name} description={menu.description} price={menu.price} />)}
       </div>
     </>
   )

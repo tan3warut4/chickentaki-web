@@ -6,9 +6,16 @@ import { FaPlus } from "react-icons/fa6";
 
 
 
-import { Card, CardContent, CardFooter, CardImage } from './ui/card'
+import { Card, CardContent, CardFooter } from './ui/card'
 
-const Menu = ({ name, description, imageUrl, price }: any) => {
+type MenuProps = {
+  name: string,
+  description: string,
+  price: number,
+  imageUrl: string,
+}
+
+const Menu = ({ name, description, price }: MenuProps) => {
   return (
     <div>
       <Card>

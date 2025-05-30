@@ -8,11 +8,9 @@ import { LuSquareMenu } from "react-icons/lu";
 import { IoMdPerson } from "react-icons/io";
 import { BounceLoader } from "react-spinners";
 
-
-
-
 export default function Home() {
-  const { data, isLoading, error } = useMenus()
+  const { data, isLoading, error } = useMenus();
+
   if (error) return <p>Error fetching menus: {error.message}</p>;
 
   return (
@@ -26,7 +24,6 @@ export default function Home() {
               </div>
               <Label>Chickentaki menu</Label>
             </div>
-
           </TabsTrigger>
           <TabsTrigger value="order">
             <div>
@@ -38,18 +35,20 @@ export default function Home() {
           </TabsTrigger>
         </TabsList>
         <TabsContent value="menu">
-          {isLoading ?
-          <div className="flex mt-25 justify-center min-h-screen ">
-            <BounceLoader
-              color={"#807f9f"}
-              loading={isLoading}
-              size={30}
-              aria-label="Loading Spinner"
-              data-testid="loader"
-            />
-          </div>
-            
-            : <MenuList data={data} />}
+          {isLoading ? (
+            <div className="flex mt-25 justify-center min-h-screen">
+              <BounceLoader
+                color={"#807f9f"}
+                loading={isLoading}
+                size={30}
+                aria-label="Loading Spinner"
+                data-testid="loader"
+              />
+            </div>
+          ) : (
+            // Pass the data array directly
+            data ? <MenuList menus={data} /> : <p>No menus available</p>
+          )}
         </TabsContent>
         <TabsContent value="order">
           <Order />
