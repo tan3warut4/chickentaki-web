@@ -7,6 +7,8 @@ import { FaPlus } from "react-icons/fa6";
 
 
 import { Card, CardContent, CardFooter } from './ui/card'
+import { useDispatch } from 'react-redux';
+import { addItem } from '@/app/features/order/ordersSlice';
 
 type MenuProps = {
   name: string,
@@ -16,6 +18,7 @@ type MenuProps = {
 }
 
 const Menu = ({ name, description, price }: MenuProps) => {
+  const dispatch = useDispatch();
   return (
     <div>
       <Card>
@@ -34,7 +37,13 @@ const Menu = ({ name, description, price }: MenuProps) => {
           </div>
         </CardContent>
         <CardFooter className='justify-end'>
-          <Button variant={'add'}>
+          <Button variant={'add'} onClick={() => dispatch(addItem({
+            id: name,
+            name: name,
+            quantity: 1,
+            price: price,
+            noted: ''
+          }))}>
             <FaPlus />
           </Button>
         </CardFooter>

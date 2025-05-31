@@ -1,12 +1,11 @@
-import { configureStore } from '@reduxjs/toolkit'
+import { configureStore } from '@reduxjs/toolkit';
+import orderReducer from '../features/order/ordersSlice';
 
-export const makeStore = () => {
-    return configureStore({
-        reducer: {},
-    })
-}
+export const store = configureStore({
+    reducer: {
+        order: orderReducer,
+    },
+});
 
-export type AppStore = ReturnType<typeof makeStore>;
-
-export type RootState = ReturnType<AppStore['getState']>
-export type AppDispatch = AppStore['dispatch']
+export type RootState = ReturnType<typeof store.getState>;
+export type AppDispatch = typeof store.dispatch;

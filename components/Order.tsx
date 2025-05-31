@@ -1,37 +1,35 @@
 import React from 'react'
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from './ui/card'
 import { Button } from './ui/button'
+import { useDispatch, useSelector } from 'react-redux'
+import { RootState } from '@/app/libs/store'
+import { removeItem } from '@/app/features/order/ordersSlice'
 
 const Order = () => {
+    const { items, total } = useSelector((state: RootState) => state.order)
+    const dispatch = useDispatch();
     return (
         <div>
             <Card>
                 <CardHeader>
                     <CardTitle>Korea chicken </CardTitle>
-                    <CardDescription className='mt-4'>
-                        <div className='flex justify-between'>
-                            <div><p>6 pcs of Korea chicken</p></div>
-                            <div>122 Baht</div>
-                        </div>
-                    </CardDescription>
-                    <CardDescription>
-                        <div className='flex justify-between'>
-                            <div><p>6 pcs of Korea chicken</p></div>
-                            <div>122 Baht</div>
-                        </div>
-                    </CardDescription>
-                    <CardDescription>
-                        <div className='flex justify-between'>
-                            <div><p>Coke x2</p></div>
-                            <div>122 Baht</div>
-                        </div>
-                    </CardDescription>
-                    <CardDescription>
-                        <div className='flex justify-between'>
-                            <div><p>Coke x2</p></div>
-                            <div>122 Baht</div>
-                        </div>
-                    </CardDescription>
+                    {items.map((item) => {
+                        return (
+                            <CardDescription className='mt-4'>
+                                <div className='flex justify-between'>
+                                    <div><p>{item.name} 
+                                    </p></div>
+                                    <div>
+                                        <Button size={"sm"} onClick={() => dispatch(removeItem(item.id))}>Remove</Button>
+                                    </div>
+                                </div>
+                                <div>
+                                    Amount : {item.quantity}
+                                </div>
+                            </CardDescription>
+                        )
+                    })}
+
                 </CardHeader>
                 <CardContent className='mt-2'>
                     <div className='flex justify-between'>

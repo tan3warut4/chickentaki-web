@@ -1,56 +1,51 @@
-// import { RootState } from '@/app/libs/store';
-// import { createSlice } from '@reduxjs/toolkit'
-// import type { PayloadAction } from '@reduxjs/toolkit'
+import { createSlice } from '@reduxjs/toolkit'
+import type { PayloadAction } from '@reduxjs/toolkit'
 
 
-// type Menu = {
-//     id: string,
-//     name: string,
-//     quantity: number,
-//     price: number,
-//     noted: string,
-// }
+type Menu = {
+    id: string,
+    name: string,
+    quantity: number,
+    price: number,
+    noted: string,
+}
 
-// interface OrderState {
-//     customerName: string,
-//     menu: Menu[]
-// }
+interface OrderState {
+    customerName: string,
+    items: Menu[],
+    total: number
+}
 
-// const initialState: OrderState | null = {
-//     customerName: "customer",
-//     menu: []
-// };
+const initialState: OrderState | null = {
+    customerName: "customer",
+    items: [
+        { id: "3", name: "test", quantity: 4, price: 100, noted: "" }
+    ],
+    total: 0
+};
 
-// export const orderSlice = createSlice({
-//     name: 'order',
-//     initialState,
-//     reducers: {
-//         addToOrder: (state, action: PayloadAction<OrderState>) => {
-//             return action.payload;
-//         },
-//         clearOrder: () => null,
-//         updateMenuItem: (state, action: PayloadAction<Menu>) => {
-//             if (state) {
-//                 const index = state.menu.findIndex((menu) => menu.id === action.payload.id);
-//                 if (index !== -1) {
-//                     // Update existing menu item
-//                     state.menu[index] = action.payload;
-//                 } else {
-//                     // Add new menu item
-//                     state.menu.push(action.payload);
-//                 }
-//             }
-//         },
-//         deleteMenuItem: (state, action: PayloadAction<string>) => {
-//             if (state) {
-//                 state.menu = state.menu.filter((menu) => menu.id !== action.payload);
-//             }
-//         },
-//     },
-// })
+const orderSlice = createSlice({
+    name: 'order',
+    initialState,
+    reducers: {
+        addItem: (state, action: PayloadAction<Menu>) => {
+            state.items.push(action.payload);
+            state.total += action.payload.price * action.payload.quantity;
+        },
+        removeItem: (state, action: PayloadAction<string>) => {
+            const index = state.items.findIndex(item => item.id === action.payload);
+            if (index !== -1) {
+                state.total -= state.items[index].price * state.items[index].quantity;
+                state.items.splice(index, 1);
+            }
+        },
+        clearOrder: (state) => {
+            state.items = [];
+            state.total = 0;
+        },
+    },
+});
 
-// export const { addToOrder, clearOrder, updateMenuItem, deleteMenuItem } = orderSlice.actions;
+export const { addItem, clearOrder, removeItem } = orderSlice.actions;
 
-// export const selectOrder = (state: RootState) => state.order.value
-
-// export default orderSlice.reducer
+export default orderSlice.reducer

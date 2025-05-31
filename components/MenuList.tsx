@@ -20,7 +20,6 @@ type MenuListProps = {
 
 
 const MenuList: React.FC<MenuListProps> = ({ menus }) => {
-
   const router = useRouter();
   const searchParams = useSearchParams();
   const [category, setCategory] = useState(searchParams?.get("category") || "all");
@@ -84,7 +83,7 @@ const MenuList: React.FC<MenuListProps> = ({ menus }) => {
       </ToggleGroup>
 
       <div className='flex flex-col gap-4'>
-        {filteredMenus?.map((menu: Menu) => <Menu key={menu.id} imageUrl={menu.imageUrl} name={menu.name} description={menu.description} price={menu.price} />)}
+        {menus?.map((menu: Menu) => <Menu key={menu.id} imageUrl={menu.imageUrl} name={menu.name} description={menu.description} price={menu.price} />)}
       </div>
     </>
   )
