@@ -15,9 +15,9 @@ const Order = () => {
                     <CardTitle>Korea chicken </CardTitle>
                     {items.map((item) => {
                         return (
-                            <CardDescription className='mt-4'>
+                            <CardDescription key={item.name} className='mt-4'>
                                 <div className='flex justify-between'>
-                                    <div><p>{item.name} 
+                                    <div><p>{item.name}
                                     </p></div>
                                     <div>
                                         <Button size={"sm"} onClick={() => dispatch(removeItem(item.id))}>Remove</Button>
@@ -34,7 +34,7 @@ const Order = () => {
                 <CardContent className='mt-2'>
                     <div className='flex justify-between'>
                         <div><p>Subtotal</p></div>
-                        <div>122 Baht</div>
+                        <div>{total}</div>
                     </div>
 
                 </CardContent>
