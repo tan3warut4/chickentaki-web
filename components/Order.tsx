@@ -16,7 +16,7 @@ const Order = () => {
         }
         return false
     }
-    const noOrder = <div className='flex justify-center mt-15'> you didn't have any order yet.</div>
+    const noOrder = <div className='flex justify-center mt-15'> you did not have any order yet.</div>
 
     return (
         items.length != 0 ?
