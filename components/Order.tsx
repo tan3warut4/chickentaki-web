@@ -3,11 +3,18 @@ import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter }
 import { Button } from './ui/button'
 import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from '@/app/libs/store'
-import { removeItem } from '@/app/features/order/ordersSlice'
+import { increaseItem, decreaseItem, removeItem } from '@/app/features/order/ordersSlice'
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from './ui/dropdown-menu'
 
 const Order = () => {
     const { items, total } = useSelector((state: RootState) => state.order)
     const dispatch = useDispatch();
+    const menuDisable = (quantity: number) => {
+        if (quantity === 0) {
+            return true
+        }
+        return false
+    }
     return (
         <div>
             <Card>
@@ -20,18 +27,23 @@ const Order = () => {
                                     <div><p>{item.name}
                                     </p></div>
                                     <div>
-                                        <Button size={"sm"} onClick={() => dispatch(removeItem(item.id))}>Remove</Button>
+                                        <Button variant="addOrder" size={"addOrder"} disabled={menuDisable(item.quantity)} onClick={() => dispatch(decreaseItem(item.name))}>-</Button>
+                                        <span className='pr-1'> {item.quantity}</span>
+                                        <Button variant="addOrder" size={"addOrder"} onClick={() => dispatch(increaseItem(item.name))}>+</Button>
+                                        <DropdownMenu>
+                                            <DropdownMenuTrigger> <Button variant="outline" size="option">:</Button></DropdownMenuTrigger>
+                                            <DropdownMenuContent>
+                                                <DropdownMenuItem variant='delete'>Delete</DropdownMenuItem>
+                                            </DropdownMenuContent>
+                                        </DropdownMenu>
                                     </div>
-                                </div>
-                                <div>
-                                    Amount : {item.quantity}
                                 </div>
                             </CardDescription>
                         )
                     })}
 
                 </CardHeader>
-                <CardContent className='mt-2'>
+                <CardContent className='my-4'>
                     <div className='flex justify-between'>
                         <div><p>Subtotal</p></div>
                         <div>{total}</div>

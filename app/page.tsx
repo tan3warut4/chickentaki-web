@@ -7,14 +7,22 @@ import { Label } from "@/components/ui/label";
 import { LuSquareMenu } from "react-icons/lu";
 import { IoMdPerson } from "react-icons/io";
 import { BounceLoader } from "react-spinners";
+import { useSelector } from "react-redux";
+import { RootState } from "./libs/store";
+import RestaurantCard from "@/components/RestaurantCard";
 
 export default function Home() {
   const { data, isLoading, error } = useMenus();
+  const { totalAmount } = useSelector((state: RootState) => state.order)
 
   if (error) return <p>Error fetching menus: {error.message}</p>;
 
   return (
-    <div className="mx-auto max-w-xl min-h-screen bg-white flex justify-center">
+    <div className="mx-auto max-w-lg min-h-screen bg-slate-50 flex flex-col items-center ">
+      <div className="w-[400px] my-2">
+        <RestaurantCard />
+      </div>
+
       <Tabs defaultValue="menu" className="w-[400px]">
         <TabsList className="grid w-full grid-cols-2">
           <TabsTrigger value="menu">
@@ -25,12 +33,13 @@ export default function Home() {
               <Label>Chickentaki menu</Label>
             </div>
           </TabsTrigger>
-          <TabsTrigger value="order">
-            <div>
+          <TabsTrigger value="order" className="relative" >
+            <div >
               <div className="flex justify-center">
                 <IoMdPerson />
               </div>
               <Label>Your order</Label>
+              <div className="absolute w-5 h-5 bg-green-600 text-white rounded-full top-3 right-10">{totalAmount}</div>
             </div>
           </TabsTrigger>
         </TabsList>

@@ -20,6 +20,8 @@ const buttonVariants = cva(
         ghost:
           "hover:bg-accent hover:text-accent-foreground dark:hover:bg-accent/50",
         link: "text-primary underline-offset-4 hover:underline",
+        addOrder:
+          "rounded-xl ",
         add:
           "hover:bg-accent bg-green-600 hover:text-accent-foreground dark:hover:bg-accent/50 rounded-full text-white",
       },
@@ -28,6 +30,8 @@ const buttonVariants = cva(
         sm: "h-8 rounded-md gap-1.5 px-3 has-[>svg]:px-2.5",
         lg: "h-10 rounded-md px-6 has-[>svg]:px-4",
         icon: "size-9",
+        addOrder: "w-7 h-7",
+        option: "px-2 py-2 rounded-sm"
       },
     },
     defaultVariants: {
