@@ -18,7 +18,7 @@ export default function Home() {
   if (error) return <p>Error fetching menus: {error.message}</p>;
 
   return (
-    <div className="mx-auto max-w-lg min-h-screen bg-slate-50 flex flex-col items-center ">
+    <div className="mx-auto max-w-lg min-h-screen px-2 bg-slate-50 flex flex-col items-center ">
       <div className="w-[400px] my-2">
         <RestaurantCard />
       </div>
