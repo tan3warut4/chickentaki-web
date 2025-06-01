@@ -3,8 +3,8 @@ import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter }
 import { Button } from './ui/button'
 import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from '@/app/libs/store'
-import { increaseItem, decreaseItem, removeItem } from '@/app/features/order/ordersSlice'
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from './ui/dropdown-menu'
+import { increaseItem, decreaseItem } from '@/app/features/order/ordersSlice'
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from './ui/dropdown-menu'
 
 const Order = () => {
     const { items, total } = useSelector((state: RootState) => state.order)
