@@ -19,7 +19,7 @@ export default function Home() {
 
   return (
     <div className="mx-auto max-w-sm min-h-screen  bg-slate-50 flex flex-col items-center ">
-      <div className="px-10">
+      <div className="px-4">
         <div className="w-full my-2">
           <RestaurantCard />
         </div>

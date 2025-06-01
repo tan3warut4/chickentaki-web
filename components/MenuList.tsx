@@ -74,12 +74,7 @@ const MenuList: React.FC<MenuListProps> = ({ menus }) => {
             Chicken
           </div>
         </ToggleGroupItem>
-        <ToggleGroupItem value="DRINK">
-          <div className='flex flex-col items-center'>
-            <Image src="/drink.jpg" width={50} height={50} alt="set" />
-            Drink
-          </div>
-        </ToggleGroupItem>
+
       </ToggleGroup>
 
       <div className='flex flex-col gap-4'>
