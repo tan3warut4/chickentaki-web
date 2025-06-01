@@ -71,6 +71,6 @@ const fetchMockMenu = (): Menu[] => {
 }
 
 export default function useMenus() {
-    const isDev = process.env.NEXT_PUBLIC_ENVIRONMENT === "DEV";
+    const isDev = true;
     return useQuery({ queryKey: ['menus'], queryFn: isDev ? fetchMockMenu : fetchMenu })
 }
