@@ -40,7 +40,7 @@ export default function Home() {
                   <IoMdPerson />
                 </div>
                 <Label>Your order</Label>
-                <div className="absolute w-5 h-5 bg-green-600 text-white rounded-full top-3 right-10">{totalAmount}</div>
+                <div className="absolute w-5 h-5 bg-green-600 text-white rounded-full top-2 right-14">{totalAmount}</div>
               </div>
             </TabsTrigger>
           </TabsList>
