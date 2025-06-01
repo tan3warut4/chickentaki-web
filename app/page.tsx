@@ -18,51 +18,54 @@ export default function Home() {
   if (error) return <p>Error fetching menus: {error.message}</p>;
 
   return (
-    <div className="mx-auto max-w-lg min-h-screen px-2 bg-slate-50 flex flex-col items-center ">
-      <div className="w-[400px] my-2">
-        <RestaurantCard />
+    <div className="mx-auto max-w-lg min-h-screen  bg-slate-50 flex flex-col items-center ">
+      <div className="px-4">
+        <div className="w-[400px] my-2">
+          <RestaurantCard />
+        </div>
+
+        <Tabs defaultValue="menu" className="w-[400px]">
+          <TabsList className="grid w-full grid-cols-2">
+            <TabsTrigger value="menu">
+              <div>
+                <div className="flex justify-center">
+                  <LuSquareMenu />
+                </div>
+                <Label>Chickentaki menu</Label>
+              </div>
+            </TabsTrigger>
+            <TabsTrigger value="order" className="relative" >
+              <div >
+                <div className="flex justify-center">
+                  <IoMdPerson />
+                </div>
+                <Label>Your order</Label>
+                <div className="absolute w-5 h-5 bg-green-600 text-white rounded-full top-3 right-10">{totalAmount}</div>
+              </div>
+            </TabsTrigger>
+          </TabsList>
+          <TabsContent value="menu">
+            {isLoading ? (
+              <div className="flex mt-25 justify-center min-h-screen">
+                <BounceLoader
+                  color={"#807f9f"}
+                  loading={isLoading}
+                  size={30}
+                  aria-label="Loading Spinner"
+                  data-testid="loader"
+                />
+              </div>
+            ) : (
+              // Pass the data array directly
+              data ? <MenuList menus={data} /> : <p>No menus available</p>
+            )}
+          </TabsContent>
+          <TabsContent value="order">
+            <Order />
+          </TabsContent>
+        </Tabs>
       </div>
 
-      <Tabs defaultValue="menu" className="w-[400px]">
-        <TabsList className="grid w-full grid-cols-2">
-          <TabsTrigger value="menu">
-            <div>
-              <div className="flex justify-center">
-                <LuSquareMenu />
-              </div>
-              <Label>Chickentaki menu</Label>
-            </div>
-          </TabsTrigger>
-          <TabsTrigger value="order" className="relative" >
-            <div >
-              <div className="flex justify-center">
-                <IoMdPerson />
-              </div>
-              <Label>Your order</Label>
-              <div className="absolute w-5 h-5 bg-green-600 text-white rounded-full top-3 right-10">{totalAmount}</div>
-            </div>
-          </TabsTrigger>
-        </TabsList>
-        <TabsContent value="menu">
-          {isLoading ? (
-            <div className="flex mt-25 justify-center min-h-screen">
-              <BounceLoader
-                color={"#807f9f"}
-                loading={isLoading}
-                size={30}
-                aria-label="Loading Spinner"
-                data-testid="loader"
-              />
-            </div>
-          ) : (
-            // Pass the data array directly
-            data ? <MenuList menus={data} /> : <p>No menus available</p>
-          )}
-        </TabsContent>
-        <TabsContent value="order">
-          <Order />
-        </TabsContent>
-      </Tabs>
     </div>
   );
 }
