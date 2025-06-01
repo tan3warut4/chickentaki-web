@@ -50,11 +50,11 @@ const MenuList: React.FC<MenuListProps> = ({ menus }) => {
   };
 
   return (
-    <>
+    <div className='overflow-x-auto'>
       <ToggleGroup type="single" variant={"outline"}
         defaultValue={searchParams?.get("category") || "all"}
         onValueChange={handleToggleChange}
-
+      className='overflow-x-auto'
       >
         <ToggleGroupItem value="all">
           <div className='flex flex-col items-center'>
@@ -85,7 +85,7 @@ const MenuList: React.FC<MenuListProps> = ({ menus }) => {
       <div className='flex flex-col gap-4'>
         {filteredMenus?.map((menu: Menu) => <Menu key={menu.id} imageUrl={menu.imageUrl} name={menu.name} description={menu.description} price={menu.price} />)}
       </div>
-    </>
+    </div>
   )
 }
 
