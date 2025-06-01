@@ -18,13 +18,13 @@ export default function Home() {
   if (error) return <p>Error fetching menus: {error.message}</p>;
 
   return (
-    <div className="mx-auto max-w-lg min-h-screen  bg-slate-50 flex flex-col items-center ">
-      <div className="px-4">
-        <div className="w-[400px] my-2">
+    <div className="mx-auto max-w-sm min-h-screen  bg-slate-50 flex flex-col items-center ">
+      <div className="px-10">
+        <div className="w-full my-2">
           <RestaurantCard />
         </div>
 
-        <Tabs defaultValue="menu" className="w-[400px]">
+        <Tabs defaultValue="menu" className="w-full">
           <TabsList className="grid w-full grid-cols-2">
             <TabsTrigger value="menu">
               <div>
